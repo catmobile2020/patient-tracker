@@ -7,6 +7,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -61,5 +62,16 @@ class Handler extends ExceptionHandler
             throw new HttpResponseException(response()->json($result , 404));
         }
         return parent::render($request, $exception);
+    }
+
+    protected function invalidJson($request, ValidationException $exception)
+    {
+        $result = [
+            'type' => $request->url(),
+            'title' => "Your request parameters didn't validate.",
+            'message' => $exception->validator->errors()->all(),
+            'errors' => $exception->errors(),
+        ];
+        throw new HttpResponseException(response()->json($result , $exception->status));
     }
 }

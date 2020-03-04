@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Novartis Event App",
+        "title": "Patient Tracker App",
         "contact": {
             "name": "Mahmoud Mohamed",
             "url": "https://www.linkedin.com/in/mahmoud-mohamed-955932b5/",
@@ -20,24 +20,6 @@
                     "auth"
                 ],
                 "summary": "login",
-                "parameters": [
-                    {
-                        "name": "email",
-                        "in": "formData",
-                        "required": true,
-                        "type": "string",
-                        "format": "string",
-                        "default": "mahmoudnada5050@gmail.com"
-                    },
-                    {
-                        "name": "password",
-                        "in": "formData",
-                        "required": true,
-                        "type": "string",
-                        "format": "string",
-                        "default": "123456"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "token"
@@ -141,6 +123,188 @@
                     },
                     "403": {
                         "description": "Forbidden The client did not have permission to access the requested resource."
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/hospitals": {
+            "get": {
+                "tags": [
+                    "hospitals"
+                ],
+                "summary": "get all hospitals paginated",
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "hospitals"
+                ],
+                "summary": "add new hospital",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "rheuma",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "crdio",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "pulmo",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "pah_expert\t",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "rhc",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "rwe",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "echo",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "pah_attentive",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "city_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "country_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/hospitals/{hospital}": {
+            "get": {
+                "tags": [
+                    "hospitals"
+                ],
+                "summary": "get single hospitals",
+                "parameters": [
+                    {
+                        "name": "poll",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/countries": {
+            "get": {
+                "tags": [
+                    "countries"
+                ],
+                "summary": "get all countries paginated",
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/countries/{country}": {
+            "get": {
+                "tags": [
+                    "countries"
+                ],
+                "summary": "single country",
+                "responses": {
+                    "200": {
+                        "description": "object"
                     }
                 },
                 "security": [

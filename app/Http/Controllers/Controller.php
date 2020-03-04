@@ -13,7 +13,7 @@ use Illuminate\Routing\Controller as BaseController;
  *     schemes={"http"},
  *     @SWG\Info(
  *         version="1.0",
- *         title="Novartis Event App",
+ *         title="Patient Tracker App",
  *         @SWG\Contact(name="Mahmoud Mohamed",email="m.mohamed@cat.com.eg",url="https://www.linkedin.com/in/mahmoud-mohamed-955932b5/"),
  *     ),
  *     @SWG\SecurityScheme(
@@ -29,6 +29,9 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public $api_paginate_num = 10;
+    public $web_paginate_num = 10;
 
     public function responseJson($message,$status)
     {

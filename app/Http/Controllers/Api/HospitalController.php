@@ -38,10 +38,77 @@ class HospitalController extends Controller
      *      security={
      *          {"jwt": {}}
      *      },@SWG\Parameter(
-     *         name="poll_id",
+     *         name="name",
      *         in="formData",
      *         required=true,
-     *         type="integer",
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="type",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="rheuma",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="crdio",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="pulmo",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="pah_expert	",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="rhc",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="rwe",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="echo",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="pah_attentive",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="city_id",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="country_id",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
      *      ),
      *      @SWG\Response(response=200, description="object"),
      * )

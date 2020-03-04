@@ -30,22 +30,4 @@ class LoginRequest extends FormRequest
             'password' => 'required|min:6',
         ];
     }
-
-    protected function failedValidation(Validator $validator)
-    {
-        $errors = [];
-        foreach ($validator->errors()->messages() as $input=>$error)
-        {
-            $errors[]=['name'=>$input,'reason'=>$error];
-        }
-        $result = [
-            'type' => $this->url(),
-            'title' => "Your request parameters didn't validate.",
-            'invalid-params' => $errors,
-            'messages' => $validator->errors()->all()
-        ];
-
-        throw new HttpResponseException(response()->json($result , 422));
-    }
-
 }

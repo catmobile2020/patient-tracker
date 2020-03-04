@@ -18,5 +18,6 @@ Route::group(['namespace' => 'Api'] ,function (){
         Route::apiResource('/hospitals','HospitalController');
 
     });
-
+    Route::get('/countries','LocationController@index');
+    Route::get('/countries/{country}','LocationController@singleCountry');
 });
