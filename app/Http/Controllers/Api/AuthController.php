@@ -38,7 +38,7 @@ class AuthController extends Controller
      *         required=true,
      *         type="string",
      *         format="string",
-     *         default="mahmoudnada5050@gmail.com",
+     *         default="rep@gmail.com",
      *      ),
      *      @SWG\Parameter(
      *         name="password",
@@ -85,7 +85,7 @@ class AuthController extends Controller
      *         required=true,
      *         type="string",
      *         format="string",
-     *         default="mahmoudnada5050@gmail.com",
+     *         default="rep@gmail.com",
      *      ),
      *      @SWG\Response(response=200, description="token"),
      *      @SWG\Response(response=401, description="Unauthorized"),

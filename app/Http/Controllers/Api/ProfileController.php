@@ -52,12 +52,7 @@ class ProfileController extends Controller
      *         required=true,
      *         type="string",
      *         format="string",
-     *         default="mahmoudnada5050@gmail.com",
-     *      ),@SWG\Parameter(
-     *         name="bio",
-     *         in="formData",
-     *         type="string",
-     *         format="string",
+     *         default="rep@gmail.com",
      *      ),@SWG\Parameter(
      *         name="photo",
      *         in="formData",

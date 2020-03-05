@@ -20,7 +20,6 @@ class AccountResource extends JsonResource
             'email' =>$this->email,
             'active' => (boolean)$this->active,
             'type' =>$this->type,
-            'bio' =>$this->bio,
             'photo' =>$this->photo,
         ];
     }

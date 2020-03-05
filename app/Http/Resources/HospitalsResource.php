@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class HospitalResource extends JsonResource
+class HospitalsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -29,7 +29,6 @@ class HospitalResource extends JsonResource
             'city'=>CityResource::make($this->city),
             'country'=>CountriesResource::make($this->country),
             'user'=>AccountResource::make($this->user),
-            'doctors'=>DoctorsResource::collection($this->doctors),
         ];
     }
 }

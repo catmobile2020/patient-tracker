@@ -36,7 +36,12 @@ class LocationController extends Controller
      *      summary="single country",
      *      security={
      *          {"jwt": {}}
-     *      },
+     *      },@SWG\Parameter(
+     *         name="country",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *      ),
      *      @SWG\Response(response=200, description="object"),
      * )
      * @param Country $country

@@ -17,5 +17,12 @@ class UserSeeder extends Seeder
             'password' => 123456,
             'type' => 1
         ]);
+
+        \App\User::create([
+            'name' => 'rep',
+            'email' => 'rep@gmail.com',
+            'password' => 123456,
+            'type' => 2
+        ]);
     }
 }

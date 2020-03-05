@@ -13,4 +13,19 @@ class Hospital extends Model
     {
         return $this->hasMany(Doctor::class);
     }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class)->withDefault();
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class)->withDefault();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->withDefault();
+    }
 }

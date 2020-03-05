@@ -20,6 +20,24 @@
                     "auth"
                 ],
                 "summary": "login",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "rep@gmail.com"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "123456"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "token"
@@ -27,7 +45,7 @@
                     "401": {
                         "description": "Unauthorized"
                     },
-                    "402": {
+                    "422": {
                         "description": "Validation Error"
                     },
                     "403": {
@@ -54,7 +72,7 @@
                         "required": true,
                         "type": "string",
                         "format": "string",
-                        "default": "mahmoudnada5050@gmail.com"
+                        "default": "rep@gmail.com"
                     }
                 ],
                 "responses": {
@@ -132,6 +150,162 @@
                 ]
             }
         },
+        "/doctors": {
+            "post": {
+                "tags": [
+                    "doctors"
+                ],
+                "summary": "add new doctor",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "speciality",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "1=> Expert Speaker , 2=> Raising Start",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "hospital_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/doctors/{doctor}": {
+            "get": {
+                "tags": [
+                    "doctors"
+                ],
+                "summary": "get single doctor",
+                "parameters": [
+                    {
+                        "name": "doctor",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "doctors"
+                ],
+                "summary": "update doctor",
+                "parameters": [
+                    {
+                        "name": "doctor",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "speciality",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "1=> Expert Speaker , 2=> Raising Start",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "hospital_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "_method:put",
+                        "in": "formData",
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "doctors"
+                ],
+                "summary": "Delete doctor",
+                "parameters": [
+                    {
+                        "name": "doctor",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
         "/hospitals": {
             "get": {
                 "tags": [
@@ -165,6 +339,7 @@
                     {
                         "name": "type",
                         "in": "formData",
+                        "description": "coe , referal",
                         "required": true,
                         "type": "string",
                         "format": "string"
@@ -173,71 +348,61 @@
                         "name": "rheuma",
                         "in": "formData",
                         "required": true,
-                        "type": "string",
-                        "format": "string"
+                        "type": "integer"
                     },
                     {
                         "name": "crdio",
                         "in": "formData",
                         "required": true,
-                        "type": "string",
-                        "format": "string"
+                        "type": "integer"
                     },
                     {
                         "name": "pulmo",
                         "in": "formData",
                         "required": true,
-                        "type": "string",
-                        "format": "string"
+                        "type": "integer"
                     },
                     {
-                        "name": "pah_expert\t",
+                        "name": "pah_expert",
                         "in": "formData",
-                        "required": true,
-                        "type": "string",
-                        "format": "string"
+                        "description": "0 , 1",
+                        "type": "integer"
                     },
                     {
                         "name": "rhc",
                         "in": "formData",
-                        "required": true,
-                        "type": "string",
-                        "format": "string"
+                        "description": "0 , 1",
+                        "type": "integer"
                     },
                     {
                         "name": "rwe",
                         "in": "formData",
-                        "required": true,
-                        "type": "string",
-                        "format": "string"
+                        "description": "0 , 1",
+                        "type": "integer"
                     },
                     {
                         "name": "echo",
                         "in": "formData",
-                        "required": true,
-                        "type": "string",
-                        "format": "string"
+                        "description": "0 , 1",
+                        "type": "integer"
                     },
                     {
                         "name": "pah_attentive",
                         "in": "formData",
-                        "required": true,
-                        "type": "string",
-                        "format": "string"
+                        "description": "0 , 1",
+                        "type": "integer"
                     },
                     {
                         "name": "city_id",
                         "in": "formData",
                         "required": true,
-                        "type": "string",
-                        "format": "string"
+                        "type": "integer"
                     },
                     {
                         "name": "country_id",
                         "in": "formData",
                         "required": true,
-                        "type": "string",
-                        "format": "string"
+                        "type": "integer"
                     }
                 ],
                 "responses": {
@@ -260,7 +425,136 @@
                 "summary": "get single hospitals",
                 "parameters": [
                     {
-                        "name": "poll",
+                        "name": "hospital",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "hospitals"
+                ],
+                "summary": "update hospital",
+                "parameters": [
+                    {
+                        "name": "hospital",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "coe , referal",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "rheuma",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "crdio",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "pulmo",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "pah_expert",
+                        "in": "formData",
+                        "description": "0 , 1",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "rhc",
+                        "in": "formData",
+                        "description": "0 , 1",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "rwe",
+                        "in": "formData",
+                        "description": "0 , 1",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "echo",
+                        "in": "formData",
+                        "description": "0 , 1",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "pah_attentive",
+                        "in": "formData",
+                        "description": "0 , 1",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "city_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "country_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "_method:put",
+                        "in": "formData",
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "hospitals"
+                ],
+                "summary": "Delete Hospital",
+                "parameters": [
+                    {
+                        "name": "hospital",
                         "in": "path",
                         "required": true,
                         "type": "integer"
@@ -302,6 +596,14 @@
                     "countries"
                 ],
                 "summary": "single country",
+                "parameters": [
+                    {
+                        "name": "country",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "object"
@@ -353,13 +655,7 @@
                         "required": true,
                         "type": "string",
                         "format": "string",
-                        "default": "mahmoudnada5050@gmail.com"
-                    },
-                    {
-                        "name": "bio",
-                        "in": "formData",
-                        "type": "string",
-                        "format": "string"
+                        "default": "rep@gmail.com"
                     },
                     {
                         "name": "photo",

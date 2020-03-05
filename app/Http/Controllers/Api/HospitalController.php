@@ -6,6 +6,7 @@ use App\Hospital;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\HospitalRequest;
 use App\Http\Resources\HospitalResource;
+use App\Http\Resources\HospitalsResource;
 
 class HospitalController extends Controller
 {
@@ -24,8 +25,8 @@ class HospitalController extends Controller
      */
     public function index()
     {
-        $rows = Hospital::with('doctors')->paginate(20);
-        return HospitalResource::collection($rows);
+        $rows = Hospital::with('city','country','user')->paginate($this->api_paginate_num);
+        return HospitalsResource::collection($rows);
     }
 
 
@@ -49,66 +50,57 @@ class HospitalController extends Controller
      *         required=true,
      *         type="string",
      *         format="string",
+     *         description="coe , referal",
      *      ),@SWG\Parameter(
      *         name="rheuma",
      *         in="formData",
      *         required=true,
-     *         type="string",
-     *         format="string",
+     *         type="integer",
      *      ),@SWG\Parameter(
      *         name="crdio",
      *         in="formData",
      *         required=true,
-     *         type="string",
-     *         format="string",
+     *         type="integer",
      *      ),@SWG\Parameter(
      *         name="pulmo",
      *         in="formData",
      *         required=true,
-     *         type="string",
-     *         format="string",
+     *         type="integer",
      *      ),@SWG\Parameter(
-     *         name="pah_expert	",
+     *         name="pah_expert",
      *         in="formData",
-     *         required=true,
-     *         type="string",
-     *         format="string",
+     *         type="integer",
+     *         description="0 , 1",
      *      ),@SWG\Parameter(
      *         name="rhc",
      *         in="formData",
-     *         required=true,
-     *         type="string",
-     *         format="string",
+     *         type="integer",
+     *         description="0 , 1",
      *      ),@SWG\Parameter(
      *         name="rwe",
      *         in="formData",
-     *         required=true,
-     *         type="string",
-     *         format="string",
+     *         type="integer",
+     *         description="0 , 1",
      *      ),@SWG\Parameter(
      *         name="echo",
      *         in="formData",
-     *         required=true,
-     *         type="string",
-     *         format="string",
+     *         type="integer",
+     *         description="0 , 1",
      *      ),@SWG\Parameter(
      *         name="pah_attentive",
      *         in="formData",
-     *         required=true,
-     *         type="string",
-     *         format="string",
+     *         type="integer",
+     *         description="0 , 1",
      *      ),@SWG\Parameter(
      *         name="city_id",
      *         in="formData",
      *         required=true,
-     *         type="string",
-     *         format="string",
+     *         type="integer",
      *      ),@SWG\Parameter(
      *         name="country_id",
      *         in="formData",
      *         required=true,
-     *         type="string",
-     *         format="string",
+     *         type="integer",
      *      ),
      *      @SWG\Response(response=200, description="object"),
      * )
@@ -117,7 +109,8 @@ class HospitalController extends Controller
      */
     public function store(HospitalRequest $request)
     {
-        $hospital = Hospital::create($request->all());
+        $auth_user = auth()->user();
+        $hospital = $auth_user->hospitals()->create($request->all());
         if ($hospital)
         {
             return $this->responseJson('Send Successfully',200);
@@ -135,13 +128,15 @@ class HospitalController extends Controller
      *      security={
      *          {"jwt": {}}
      *      },@SWG\Parameter(
-     *         name="poll",
+     *         name="hospital",
      *         in="path",
      *         required=true,
      *         type="integer",
      *      ),
      *      @SWG\Response(response=200, description="object"),
      * )
+     * @param Hospital $hospital
+     * @return HospitalResource
      */
     public function show(Hospital $hospital)
     {
@@ -149,19 +144,123 @@ class HospitalController extends Controller
     }
 
 
-
-
-
+    /**
+     *
+     * @SWG\Put(
+     *      tags={"hospitals"},
+     *      path="/hospitals/{hospital}",
+     *      summary="update hospital",
+     *      security={
+     *          {"jwt": {}}
+     *      },@SWG\Parameter(
+     *         name="hospital",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="name",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="type",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         description="coe , referal",
+     *      ),@SWG\Parameter(
+     *         name="rheuma",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="crdio",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="pulmo",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="pah_expert",
+     *         in="formData",
+     *         type="integer",
+     *         description="0 , 1",
+     *      ),@SWG\Parameter(
+     *         name="rhc",
+     *         in="formData",
+     *         type="integer",
+     *         description="0 , 1",
+     *      ),@SWG\Parameter(
+     *         name="rwe",
+     *         in="formData",
+     *         type="integer",
+     *         description="0 , 1",
+     *      ),@SWG\Parameter(
+     *         name="echo",
+     *         in="formData",
+     *         type="integer",
+     *         description="0 , 1",
+     *      ),@SWG\Parameter(
+     *         name="pah_attentive",
+     *         in="formData",
+     *         type="integer",
+     *         description="0 , 1",
+     *      ),@SWG\Parameter(
+     *         name="city_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="country_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="_method:put",
+     *         in="formData",
+     *         type="string",
+     *         format="string",
+     *      ),
+     *      @SWG\Response(response=200, description="object"),
+     * )
+     * @param HospitalRequest $request
+     * @param Hospital $hospital
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(HospitalRequest $request, Hospital $hospital)
     {
         $hospital->update($request->all());
-        return $this->responseJson('Send Successfully',200);
+        return $this->responseJson('updated Successfully',200);
     }
 
-
+    /**
+     *
+     * @SWG\Delete(
+     *      tags={"hospitals"},
+     *      path="/hospitals/{hospital}",
+     *      summary="Delete Hospital",
+     *      security={
+     *          {"jwt": {}}
+     *      },@SWG\Parameter(
+     *         name="hospital",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="object"),
+     * )
+     * @param Hospital $hospital
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
     public function destroy(Hospital $hospital)
     {
         $hospital->delete();
-        return $this->responseJson('Send Successfully',200);
+        return $this->responseJson('Delete Successfully',200);
     }
 }

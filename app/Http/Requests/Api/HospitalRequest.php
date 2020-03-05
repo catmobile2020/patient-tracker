@@ -13,7 +13,7 @@ class HospitalRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,25 @@ class HospitalRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'name'=>'required',
+            'type'=>'required',
+            'rheuma'=>'required|between:0,100',
+            'crdio'=>'required|min:0|max:100',
+            'pulmo'=>'required|between:0,100',
+            'city_id'=>'required|exists:cities,id',
+            'country_id'=>'required|exists:countries,id',
         ];
+        if ($this->request->get('type') == 'coe')
+        {
+            $rules['pah_expert'] ='required|between:0,1';
+            $rules['rhc'] ='required|between:0,1';
+            $rules['rwe'] ='required|between:0,1';
+        }else
+        {
+            $rules['echo'] ='required|between:0,1';
+            $rules['pah_attentive'] ='required|between:0,1';
+        }
+        return $rules;
     }
 }

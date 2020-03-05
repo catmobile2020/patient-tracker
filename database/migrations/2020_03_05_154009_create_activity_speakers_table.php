@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDoctorsTable extends Migration
+class CreateActivitySpeakersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateDoctorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('doctors', function (Blueprint $table) {
+        Schema::create('activity_speakers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('type'); // 1=> locale  2=> international
             $table->string('name');
+            $table->string('speaker_type');// 1=> Expert Speaker , 2=> Raising Start
             $table->string('speciality');
-            $table->string('type')->nullable(); // 1=> Expert Speaker , 2=> Raising Start
-            $table->unsignedBigInteger('hospital_id')->index();
-            $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade');
+            $table->unsignedBigInteger('activity_id')->index();
+            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateDoctorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doctors');
+        Schema::dropIfExists('activity_speakers');
     }
 }

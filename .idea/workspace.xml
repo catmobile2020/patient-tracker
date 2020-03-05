@@ -2,26 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b4d09d9-66d6-448a-961e-f30baf5be08d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LocationController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/CityResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/CountriesResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/CountryResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Doctor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Doctor.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Hospital.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Hospital.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/HospitalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/HospitalController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/CommentRequest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/EventAttendanceRequest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/LoginRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Api/LoginRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/PracticeOptionRate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/RateRequest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/UserAgendaRateQuestion.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/UserPollRequest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/UserPracticeRequest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LocationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LocationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/HospitalRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Api/HospitalRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/AccountResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/AccountResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CityResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CityResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CountriesResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CountriesResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CountryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CountryResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/HospitalResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/HospitalResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_03_133721_create_doctors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_03_133721_create_doctors_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_03_134522_create_hospital_user.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -143,10 +145,12 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1Yc4XIFmjgodeEIIV0yf7PRh5Yg" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -158,10 +162,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/Http" />
       <recent name="$PROJECT_DIR$/resources/views" />
-      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
       <recent name="$PROJECT_DIR$/database/seeds" />
     </key>
   </component>
@@ -194,7 +198,8 @@
       <option name="presentableId" value="Default" />
       <updated>1583228587416</updated>
       <workItem from="1583228594072" duration="9469000" />
-      <workItem from="1583312825294" duration="4820000" />
+      <workItem from="1583312825294" duration="5092000" />
+      <workItem from="1583400608342" duration="12398000" />
     </task>
     <servers />
   </component>
