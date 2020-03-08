@@ -15,9 +15,9 @@ class CreateActivitySpeakersTable extends Migration
     {
         Schema::create('activity_speakers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('type'); // 1=> locale  2=> international
+            $table->string('type'); // locale ,international
             $table->string('name');
-            $table->string('speaker_type');// 1=> Expert Speaker , 2=> Raising Start
+            $table->string('speaker_type');// Expert Speaker ,  Raising Start
             $table->string('speciality');
             $table->unsignedBigInteger('activity_id')->index();
             $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');

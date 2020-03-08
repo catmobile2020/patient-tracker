@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\HospitalRequest;
 use App\Http\Resources\HospitalResource;
 use App\Http\Resources\HospitalsResource;
+use Illuminate\Http\Request;
 
 class HospitalController extends Controller
 {
@@ -19,13 +20,25 @@ class HospitalController extends Controller
      *      summary="get all hospitals paginated",
      *      security={
      *          {"jwt": {}}
-     *      },
+     *      },@SWG\Parameter(
+     *         name="type",
+     *         in="query",
+     *         type="string",
+     *         format="string",
+     *      ),
      *      @SWG\Response(response=200, description="object"),
      * )
+     * @param Request $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
-        $rows = Hospital::with('city','country','user')->paginate($this->api_paginate_num);
+        $rows = Hospital::with('city','country','user');
+        if ($request->has('type') and $request->type)
+        {
+            $rows=$rows->where('type',$request->type);
+        }
+        $rows= $rows->paginate($this->api_paginate_num);
         return HospitalsResource::collection($rows);
     }
 

@@ -14,6 +14,188 @@
         "http"
     ],
     "paths": {
+        "/activities": {
+            "get": {
+                "tags": [
+                    "activities"
+                ],
+                "summary": "get all activities paginated",
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "activities"
+                ],
+                "summary": "add new activity",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": " 1=> MedicalEducation , 2=> MarketAccess , 3=> Commercial",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "subtype",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "2020-03-04",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "no_attendees",
+                        "in": "formData",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "city_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/activities/{activity}": {
+            "get": {
+                "tags": [
+                    "activities"
+                ],
+                "summary": "get single activity",
+                "parameters": [
+                    {
+                        "name": "activity",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "activities"
+                ],
+                "summary": "update activity",
+                "parameters": [
+                    {
+                        "name": "activity",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": " 1=> MedicalEducation , 2=> MarketAccess , 3=> Commercial",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "subtype",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "2020-03-04",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "no_attendees",
+                        "in": "formData",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "city_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "_method:put",
+                        "in": "formData",
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "activities"
+                ],
+                "summary": "Delete activity",
+                "parameters": [
+                    {
+                        "name": "activity",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
         "/auth/login": {
             "post": {
                 "tags": [
@@ -174,7 +356,7 @@
                     {
                         "name": "type",
                         "in": "formData",
-                        "description": "1=> Expert Speaker , 2=> Raising Start",
+                        "description": "Expert Speaker ,Raising Start",
                         "required": true,
                         "type": "string",
                         "format": "string"
@@ -252,7 +434,7 @@
                     {
                         "name": "type",
                         "in": "formData",
-                        "description": "1=> Expert Speaker , 2=> Raising Start",
+                        "description": "Expert Speaker , Raising Start",
                         "required": true,
                         "type": "string",
                         "format": "string"
@@ -312,6 +494,14 @@
                     "hospitals"
                 ],
                 "summary": "get all hospitals paginated",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "object"
@@ -599,6 +789,99 @@
                 "parameters": [
                     {
                         "name": "country",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/patients": {
+            "get": {
+                "tags": [
+                    "patients"
+                ],
+                "summary": "get all patients paginated",
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "patients"
+                ],
+                "summary": "add new patient",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "city_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "country_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "hospital_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "doctor_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/patients/{patient}": {
+            "get": {
+                "tags": [
+                    "patients"
+                ],
+                "summary": "get single patient",
+                "parameters": [
+                    {
+                        "name": "patient",
                         "in": "path",
                         "required": true,
                         "type": "integer"

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ActivityRequest extends FormRequest
+class PatientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,11 @@ class ActivityRequest extends FormRequest
     public function rules()
     {
         return [
-            'type'=>'required',
-            'subtype'=>'required',
-            'date'=>'required',
+            'name'=>'required',
             'city_id'=>'required|exists:cities,id',
-            'speakers'=>'required|array|min:1',
-            'speakers.*'=>'array',
-            'speakers.*.type'=>'required',
-            'speakers.*.name'=>'required',
-            'speakers.*.speaker_type'=>'required',
-            'speakers.*.speciality'=>'required',
+            'country_id'=>'required|exists:countries,id',
+            'hospital_id'=>'required|exists:hospitals,id',
+            'doctor_id'=>'required|exists:doctors,id',
         ];
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActivitiesTable extends Migration
+class CreatePatientHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateActivitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('patient_histories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->tinyInteger('type');// 1=> MedicalEducation , 2=> MarketAccess , 3=> Commercial
-            $table->string('subtype');
-            $table->date('date');
-            $table->string('no_attendees')->nullable();
-            $table->unsignedBigInteger('city_id')->index();
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->string('status')->default('no update'); // no update , confirmed , not ph
             $table->unsignedBigInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->unsignedBigInteger('patient_id')->index();
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ class CreateActivitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activities');
+        Schema::dropIfExists('patient_histories');
     }
 }

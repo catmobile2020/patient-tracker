@@ -20,6 +20,7 @@ class DoctorResource extends JsonResource
             'speciality'=>$this->speciality,
             'type'=>$this->type,
             'hospital'=>HospitalsResource::make($this->hospital),
+            'patients'=>PatientsResource::collection($this->patients),
         ];
     }
 }

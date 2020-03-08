@@ -18,6 +18,7 @@ Route::group(['namespace' => 'Api'] ,function (){
         Route::apiResource('/hospitals','HospitalController');
         Route::apiResource('/doctors','DoctorController');
         Route::apiResource('/activities','ActivityController');
+        Route::apiResource('/patients','PatientController');
 
     });
     Route::get('/countries','LocationController@index');

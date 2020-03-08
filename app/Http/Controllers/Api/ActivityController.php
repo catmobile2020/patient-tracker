@@ -31,7 +31,7 @@ class ActivityController extends Controller
 
     /**
      *
-     * @SWG\post(
+     * @SWG\Post(
      *      tags={"activities"},
      *      path="/activities",
      *      summary="add new activity",
@@ -55,10 +55,10 @@ class ActivityController extends Controller
      *         required=true,
      *         type="string",
      *         format="string",
+     *         description="2020-03-04",
      *      ),@SWG\Parameter(
      *         name="no_attendees",
      *         in="formData",
-     *         required=true,
      *         type="integer",
      *      ),@SWG\Parameter(
      *         name="city_id",
@@ -74,9 +74,10 @@ class ActivityController extends Controller
     public function store(ActivityRequest $request)
     {
         $auth_user = auth()->user();
-        $activity = $auth_user->activities()->create($request->all());
+        $activity = $auth_user->activities()->create($request->except('speakers'));
         if ($activity)
         {
+            $activity->speakers()->createMany($request->speakers);
             return $this->responseJson('Send Successfully',200);
         }
         return $this->responseJson('Error Happen, Try Again!',400);
@@ -139,16 +140,21 @@ class ActivityController extends Controller
      *         required=true,
      *         type="string",
      *         format="string",
+     *         description="2020-03-04",
      *      ),@SWG\Parameter(
      *         name="no_attendees",
      *         in="formData",
-     *         required=true,
      *         type="integer",
      *      ),@SWG\Parameter(
      *         name="city_id",
      *         in="formData",
      *         required=true,
      *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="_method:put",
+     *         in="formData",
+     *         type="string",
+     *         format="string",
      *      ),
      *      @SWG\Response(response=200, description="object"),
      * )
@@ -156,9 +162,14 @@ class ActivityController extends Controller
      * @param Activity $activity
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(ActivityRequest $request, Activity $activity)
+    public function update(Request $request, Activity $activity)
     {
-        $activity->update($request->all());
+        $activity->update($request->except('speakers'));
+        if (count($request->speakers))
+        {
+            $activity->speakers()->delete();
+            $activity->speakers()->createMany($request->speakers);
+        }
         return $this->responseJson('updated Successfully',200);
     }
 
@@ -184,6 +195,7 @@ class ActivityController extends Controller
      */
     public function destroy(Activity $activity)
     {
+        $activity->speakers()->delete();
         $activity->delete();
         return $this->responseJson('Delete Successfully',200);
     }
