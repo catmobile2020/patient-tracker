@@ -6,6 +6,7 @@ use App\Doctor;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\DoctorRequest;
 use App\Http\Resources\DoctorResource;
+use App\Http\Resources\PatientsResource;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -82,6 +83,30 @@ class DoctorController extends Controller
     public function show(Doctor $doctor)
     {
         return DoctorResource::make($doctor);
+    }
+
+    /**
+     *
+     * @SWG\Get(
+     *      tags={"doctors"},
+     *      path="/doctors/{doctor}/patients",
+     *      summary="get doctor patients paginated",
+     *      security={
+     *          {"jwt": {}}
+     *      },@SWG\Parameter(
+     *         name="doctor",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="object"),
+     * )
+     * @param Doctor $doctor
+     * @return PatientsResource
+     */
+    public function showPatients(Doctor $doctor)
+    {
+        return PatientsResource::collection($doctor->patients()->with('hospital')->paginate($this->api_paginate_num));
     }
 
 

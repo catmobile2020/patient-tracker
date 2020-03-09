@@ -24,7 +24,8 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        $rows = Activity::with('city','user','speakers')->paginate($this->api_paginate_num);
+        $auth_user = auth()->user();
+        $rows = $auth_user->activities()->with('city','user','speakers')->paginate($this->api_paginate_num);
         return ActivityResource::collection($rows);
     }
 
@@ -105,6 +106,11 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
+        $auth_user = auth()->user();
+        if ($activity->user_id != $auth_user->id)
+        {
+            return $this->responseJson('Unauthorized',401);
+        }
         return ActivityResource::make($activity);
     }
 
@@ -164,6 +170,11 @@ class ActivityController extends Controller
      */
     public function update(Request $request, Activity $activity)
     {
+        $auth_user = auth()->user();
+        if ($activity->user_id != $auth_user->id)
+        {
+            return $this->responseJson('Unauthorized',401);
+        }
         $activity->update($request->except('speakers'));
         if (count($request->speakers))
         {
@@ -195,6 +206,11 @@ class ActivityController extends Controller
      */
     public function destroy(Activity $activity)
     {
+        $auth_user = auth()->user();
+        if ($activity->user_id != $auth_user->id)
+        {
+            return $this->responseJson('Unauthorized',401);
+        }
         $activity->speakers()->delete();
         $activity->delete();
         return $this->responseJson('Delete Successfully',200);

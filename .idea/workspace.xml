@@ -3,15 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="8b4d09d9-66d6-448a-961e-f30baf5be08d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Doctor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Doctor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Hospital.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Hospital.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ActivityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ActivityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/DoctorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/DoctorController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/HospitalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/HospitalController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/ActivityRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Api/ActivityRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/DoctorResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/DoctorResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_05_135427_create_activities_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_05_135427_create_activities_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_05_154009_create_activity_speakers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_05_154009_create_activity_speakers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/PatientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/PatientController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/PatientResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/PatientResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/PatientsResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/PatientsResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Patient.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Patient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
     </list>
@@ -190,6 +191,7 @@
       <workItem from="1583312825294" duration="5092000" />
       <workItem from="1583400608342" duration="12399000" />
       <workItem from="1583662366176" duration="10870000" />
+      <workItem from="1583745989119" duration="4464000" />
     </task>
     <servers />
   </component>

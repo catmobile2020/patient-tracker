@@ -89,7 +89,7 @@ class AuthController extends Controller
      *      ),
      *      @SWG\Response(response=200, description="token"),
      *      @SWG\Response(response=401, description="Unauthorized"),
-     *      @SWG\Response(response=402, description="Validation Error"),
+     *      @SWG\Response(response=422, description="Validation Error"),
      *      @SWG\Response(response=403, description="Forbidden The client did not have permission to access the requested resource."),
      * )
      * @param ResetPasswordRequest $request
@@ -125,7 +125,7 @@ class AuthController extends Controller
      *      },
      *      @SWG\Response(response=200, description="message"),
      *      @SWG\Response(response=401, description="Unauthorized"),
-     *      @SWG\Response(response=402, description="Validation Error"),
+     *      @SWG\Response(response=422, description="Validation Error"),
      *      @SWG\Response(response=403, description="Forbidden The client did not have permission to access the requested resource."),
      * )
      */
@@ -146,7 +146,7 @@ class AuthController extends Controller
      *      },
      *      @SWG\Response(response=200, description="message"),
      *      @SWG\Response(response=401, description="Unauthorized"),
-     *      @SWG\Response(response=402, description="Validation Error"),
+     *      @SWG\Response(response=422, description="Validation Error"),
      *      @SWG\Response(response=403, description="Forbidden The client did not have permission to access the requested resource."),
      * )
      */

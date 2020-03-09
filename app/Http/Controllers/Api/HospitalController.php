@@ -33,7 +33,8 @@ class HospitalController extends Controller
      */
     public function index(Request $request)
     {
-        $rows = Hospital::with('city','country','user');
+        $auth_user = auth()->user();
+        $rows =$auth_user->hospitals()->with('city','country','user');
         if ($request->has('type') and $request->type)
         {
             $rows=$rows->where('type',$request->type);
@@ -153,6 +154,11 @@ class HospitalController extends Controller
      */
     public function show(Hospital $hospital)
     {
+        $auth_user = auth()->user();
+        if ($hospital->user_id != $auth_user->id)
+        {
+            return $this->responseJson('Unauthorized',401);
+        }
         return HospitalResource::make($hospital);
     }
 
@@ -247,6 +253,11 @@ class HospitalController extends Controller
      */
     public function update(HospitalRequest $request, Hospital $hospital)
     {
+        $auth_user = auth()->user();
+        if ($hospital->user_id != $auth_user->id)
+        {
+            return $this->responseJson('Unauthorized',401);
+        }
         $hospital->update($request->all());
         return $this->responseJson('updated Successfully',200);
     }
@@ -273,6 +284,11 @@ class HospitalController extends Controller
      */
     public function destroy(Hospital $hospital)
     {
+        $auth_user = auth()->user();
+        if ($hospital->user_id != $auth_user->id)
+        {
+            return $this->responseJson('Unauthorized',401);
+        }
         $hospital->delete();
         return $this->responseJson('Delete Successfully',200);
     }

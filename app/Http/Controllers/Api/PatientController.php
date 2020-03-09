@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Hospital;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PatientRequest;
+use App\Http\Requests\Api\TreatmentRequest;
 use App\Http\Resources\PatientResource;
 use App\Http\Resources\PatientsResource;
 use App\Patient;
-use App\PatientHistory;
-use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
@@ -121,5 +120,54 @@ class PatientController extends Controller
     public function show(Patient $patient)
     {
         return PatientResource::make($patient);
+    }
+
+    /**
+     *
+     * @SWG\post(
+     *      tags={"patients"},
+     *      path="/patients/{patient}/treatments",
+     *      summary="add new treatments",
+     *      security={
+     *          {"jwt": {}}
+     *      },@SWG\Parameter(
+     *         name="patient",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="type_medication",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         description="uptravi , opsumit",
+     *      ),@SWG\Parameter(
+     *         name="etiology",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="other_medication",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),
+     *      @SWG\Response(response=200, description="object"),
+     * )
+     * @param Patient $patient
+     * @param PatientRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function addTreatments(Patient $patient,TreatmentRequest $request)
+    {
+        $treatment = $patient->treatments()->create($request->all());
+        if ($treatment)
+        {
+            return $this->responseJson('Send Successfully',200);
+        }
+        return $this->responseJson('Error Happen, Try Again!',400);
     }
 }

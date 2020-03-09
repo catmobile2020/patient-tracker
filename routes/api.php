@@ -17,8 +17,10 @@ Route::group(['namespace' => 'Api'] ,function (){
 
         Route::apiResource('/hospitals','HospitalController');
         Route::apiResource('/doctors','DoctorController');
+        Route::get('/doctors/{doctor}/patients','DoctorController@showPatients');
         Route::apiResource('/activities','ActivityController');
         Route::apiResource('/patients','PatientController');
+        Route::post('/patients/{patient}/treatments','PatientController@addTreatments');
 
     });
     Route::get('/countries','LocationController@index');

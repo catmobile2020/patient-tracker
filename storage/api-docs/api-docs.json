@@ -488,6 +488,32 @@
                 ]
             }
         },
+        "/doctors/{doctor}/patients": {
+            "get": {
+                "tags": [
+                    "doctors"
+                ],
+                "summary": "get doctor patients paginated",
+                "parameters": [
+                    {
+                        "name": "doctor",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
         "/hospitals": {
             "get": {
                 "tags": [
@@ -885,6 +911,54 @@
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/patients/{patient}/treatments": {
+            "post": {
+                "tags": [
+                    "patients"
+                ],
+                "summary": "add new treatments",
+                "parameters": [
+                    {
+                        "name": "patient",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "type_medication",
+                        "in": "formData",
+                        "description": "uptravi , opsumit",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "etiology",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "other_medication",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
                     }
                 ],
                 "responses": {
