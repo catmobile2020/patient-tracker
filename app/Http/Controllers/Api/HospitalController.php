@@ -25,6 +25,7 @@ class HospitalController extends Controller
      *         in="query",
      *         type="string",
      *         format="string",
+     *         description="coe , referal",
      *      ),
      *      @SWG\Response(response=200, description="object"),
      * )

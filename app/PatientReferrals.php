@@ -6,17 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class PatientReferrals extends Model
 {
-    protected $fillable=['from_user','to_user','patient_id'];
+    protected $fillable=['from_hospital','to_hospital','user_id','patient_id'];
 
 
-    public function fromUser()
+    public function fromHospital()
     {
-        return $this->belongsTo(User::class,'from_user')->withDefault();
+        return $this->belongsTo(Hospital::class,'from_hospital')->withDefault();
     }
 
-    public function toUser()
+    public function toHospital()
     {
-        return $this->belongsTo(User::class,'to_user')->withDefault();
+        return $this->belongsTo(Hospital::class,'to_hospital')->withDefault();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->withDefault();
     }
 
     public function patient()

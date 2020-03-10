@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePatientReferralsTable extends Migration
+class CreatePatientDoctorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePatientReferralsTable extends Migration
      */
     public function up()
     {
-        Schema::create('patient_referrals', function (Blueprint $table) {
+        Schema::create('patient_doctors', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('from_hospital')->index();
-            $table->foreign('from_hospital')->references('id')->on('hospitals')->onDelete('cascade');
-            $table->unsignedBigInteger('to_hospital')->index();
-            $table->foreign('to_hospital')->references('id')->on('hospitals')->onDelete('cascade');
+            $table->unsignedBigInteger('from_doctor')->index();
+            $table->foreign('from_doctor')->references('id')->on('doctors')->onDelete('cascade');
+            $table->unsignedBigInteger('to_doctor')->index();
+            $table->foreign('to_doctor')->references('id')->on('doctors')->onDelete('cascade');
 
             $table->unsignedBigInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
@@ -36,6 +36,6 @@ class CreatePatientReferralsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patient_referrals');
+        Schema::dropIfExists('patient_doctors');
     }
 }

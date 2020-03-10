@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Filters\PatientFilter;
 use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
@@ -47,4 +48,11 @@ class Patient extends Model
     {
         return $this->hasMany(PatientTreatments::class);
     }
+
+    public function scopeFilter($query,PatientFilter $filter)
+    {
+        return $filter->apply($query);
+    }
+
+
 }

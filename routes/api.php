@@ -20,7 +20,10 @@ Route::group(['namespace' => 'Api'] ,function (){
         Route::get('/doctors/{doctor}/patients','DoctorController@showPatients');
         Route::apiResource('/activities','ActivityController');
         Route::apiResource('/patients','PatientController');
+        Route::post('/patients/add-referal','PatientController@storeReferal');
         Route::post('/patients/{patient}/treatments','PatientController@addTreatments');
+
+        Route::apiResource('/targets','TargetController');
 
     });
     Route::get('/countries','LocationController@index');

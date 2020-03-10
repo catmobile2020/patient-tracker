@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PatientRequest extends FormRequest
+class ReferalRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class PatientRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -28,9 +28,7 @@ class PatientRequest extends FormRequest
             'country_id'=>'required|exists:countries,id',
             'hospital_id'=>'required|exists:hospitals,id',
             'doctor_id'=>'required|exists:doctors,id',
-            'type_medication'=>'required',
-            'etiology'=>'required',
-            'other_medication'=>'required',
+            'to_hospital'=>'required|exists:hospitals,id',
         ];
     }
 }

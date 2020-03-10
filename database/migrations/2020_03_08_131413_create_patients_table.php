@@ -15,7 +15,7 @@ class CreatePatientsTable extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('status')->default('no update'); // no update , confirmed , not ph
 
             $table->unsignedBigInteger('city_id')->index();

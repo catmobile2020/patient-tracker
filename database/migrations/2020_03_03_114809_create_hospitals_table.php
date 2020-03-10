@@ -16,7 +16,7 @@ class CreateHospitalsTable extends Migration
         Schema::create('hospitals', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('type');
+            $table->string('type'); //coe , referal
             $table->double('rheuma')->nullable();
             $table->double('crdio')->nullable();
             $table->double('pulmo')->nullable();

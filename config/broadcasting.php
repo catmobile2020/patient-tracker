@@ -53,6 +53,9 @@ return [
         'null' => [
             'driver' => 'null',
         ],
+        'fcm' => [
+            'key' => env('FCM_API_KEY','YOUR_API_KEY')
+        ]
 
     ],
 

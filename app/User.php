@@ -24,7 +24,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'device_token',
     ];
 
     /**
@@ -79,5 +79,14 @@ class User extends Authenticatable implements JWTSubject
     public function patients()
     {
         return $this->hasMany(Patient::class);
+    }
+
+    public function targets()
+    {
+        return $this->hasMany(UserTargets::class);
+    }
+
+    public function routeNotificationForFcm() {
+        return $this->device_token;
     }
 }

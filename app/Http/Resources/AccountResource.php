@@ -21,6 +21,7 @@ class AccountResource extends JsonResource
             'active' => (boolean)$this->active,
             'type' =>$this->type,
             'photo' =>$this->photo,
+            'device_token' =>$this->device_token,
         ];
     }
 }

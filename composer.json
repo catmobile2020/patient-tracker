@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2",
         "darkaonline/l5-swagger": "^6.0",
+        "douglasresendemaciel/fcm-laravel-notification": "@dev",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^1.0",
         "laravel/framework": "^6.2",

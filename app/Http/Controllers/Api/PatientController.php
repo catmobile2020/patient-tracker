@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Filters\PatientFilter;
 use App\Hospital;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PatientRequest;
+use App\Http\Requests\Api\ReferalRequest;
 use App\Http\Requests\Api\TreatmentRequest;
 use App\Http\Resources\PatientResource;
 use App\Http\Resources\PatientsResource;
 use App\Patient;
+use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
@@ -21,14 +24,44 @@ class PatientController extends Controller
      *      summary="get all patients paginated",
      *      security={
      *          {"jwt": {}}
-     *      },
+     *      },@SWG\Parameter(
+     *         name="status",
+     *         in="query",
+     *         type="string",
+     *         format="string",
+     *        description="no update , confirmed , not ph",
+     *      ),@SWG\Parameter(
+     *         name="city_id",
+     *         in="query",
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="country_id",
+     *         in="query",
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="hospital_id",
+     *         in="query",
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="doctor_id",
+     *         in="query",
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="hospital_type",
+     *         in="query",
+     *         type="string",
+     *         format="string",
+     *        description="coe , referal",
+     *      ),
      *      @SWG\Response(response=200, description="object"),
      * )
+     * @param PatientFilter $filter
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(PatientFilter $filter)
     {
         $auth_user = auth()->user();
-        $rows =$auth_user->patients()->paginate($this->api_paginate_num);
+        $rows =$auth_user->patients()->filter($filter)->paginate($this->api_paginate_num);
         return PatientsResource::collection($rows);
     }
 
@@ -43,7 +76,6 @@ class PatientController extends Controller
      *      },@SWG\Parameter(
      *         name="name",
      *         in="formData",
-     *         required=true,
      *         type="string",
      *         format="string",
      *      ),@SWG\Parameter(
@@ -66,29 +98,40 @@ class PatientController extends Controller
      *         in="formData",
      *         required=true,
      *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="type_medication",
+     *         in="formData",
+     *         type="string",
+     *         format="string",
+     *         description="uptravi , opsumit",
+     *      ),@SWG\Parameter(
+     *         name="etiology",
+     *         in="formData",
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="other_medication",
+     *         in="formData",
+     *         type="string",
+     *         format="string",
      *      ),
      *      @SWG\Response(response=200, description="object"),
      * )
      * @param PatientRequest $request
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(PatientRequest $request)
     {
         $inputs = $request->all();
-//        return response()->json($inputs);
         $auth_user = auth()->user();
         $hospital = Hospital::find($request->hospital_id);
-        $hospital_owner = $hospital->user;
-        if ($hospital_owner->id == $auth_user->id)
+        if ($hospital->type != 'coe')
         {
-            $inputs['status'] = 'confirmed';
-            $patient =$auth_user->patients()->create($inputs);
-        }else
-        {
-            $inputs['status'] = 'no update';
-            $patient =$hospital_owner->patients()->create($inputs);
-            $patient->referrals()->create(['from_user'=>$auth_user->id,'to_user'=>$hospital_owner->id]);
+            return $this->responseJson("This Hospital Doesn't Support COE Type.",400);
         }
+        $inputs['status'] = 'confirmed';
+        $patient =$auth_user->patients()->create($inputs);
         if ($patient)
         {
             $patient->histories()->create(['user_id'=>$auth_user->id,'status'=>$patient->status]);
@@ -166,6 +209,66 @@ class PatientController extends Controller
         $treatment = $patient->treatments()->create($request->all());
         if ($treatment)
         {
+            return $this->responseJson('Send Successfully',200);
+        }
+        return $this->responseJson('Error Happen, Try Again!',400);
+    }
+
+    /**
+     *
+     * @SWG\post(
+     *      tags={"patients"},
+     *      path="/patients/add-referal",
+     *      summary="add new refaral patient",
+     *      security={
+     *          {"jwt": {}}
+     *      },@SWG\Parameter(
+     *         name="name",
+     *         in="formData",
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="city_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="country_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="hospital_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="doctor_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="to_hospital",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="object"),
+     * )
+     * @param ReferalRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function storeReferal(ReferalRequest $request)
+    {
+        $inputs = $request->all();
+        $auth_user = auth()->user();
+        $inputs['status'] = 'no update';
+        $patient =$auth_user->patients()->create($inputs);
+
+        if ($patient)
+        {
+            $patient->referrals()->create(['from_hospital'=>$request->hospital_id,'to_hospital'=>$request->to_hospital]);
+            $patient->histories()->create(['user_id'=>$auth_user->id,'status'=>$patient->status]);
             return $this->responseJson('Send Successfully',200);
         }
         return $this->responseJson('Error Happen, Try Again!',400);

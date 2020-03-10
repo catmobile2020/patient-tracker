@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('active')->default(1);
             $table->tinyInteger('type')->default(2); // 1=> admin   2=>rep
             $table->string('password');
+            $table->longText('device_token')->nullable();
             $table->longText('reset_token')->nullable();
             $table->rememberToken();
             $table->timestamps();

@@ -209,7 +209,7 @@
                         "required": true,
                         "type": "string",
                         "format": "string",
-                        "default": "rep@gmail.com"
+                        "default": "rep1@gmail.com"
                     },
                     {
                         "name": "password",
@@ -254,7 +254,7 @@
                         "required": true,
                         "type": "string",
                         "format": "string",
-                        "default": "rep@gmail.com"
+                        "default": "rep1@gmail.com"
                     }
                 ],
                 "responses": {
@@ -264,7 +264,7 @@
                     "401": {
                         "description": "Unauthorized"
                     },
-                    "402": {
+                    "422": {
                         "description": "Validation Error"
                     },
                     "403": {
@@ -291,7 +291,7 @@
                     "401": {
                         "description": "Unauthorized"
                     },
-                    "402": {
+                    "422": {
                         "description": "Validation Error"
                     },
                     "403": {
@@ -318,7 +318,7 @@
                     "401": {
                         "description": "Unauthorized"
                     },
-                    "402": {
+                    "422": {
                         "description": "Validation Error"
                     },
                     "403": {
@@ -524,6 +524,7 @@
                     {
                         "name": "type",
                         "in": "query",
+                        "description": "coe , referal",
                         "type": "string",
                         "format": "string"
                     }
@@ -838,6 +839,42 @@
                     "patients"
                 ],
                 "summary": "get all patients paginated",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "no update , confirmed , not ph",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "city_id",
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "country_id",
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "hospital_id",
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "doctor_id",
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "hospital_type",
+                        "in": "query",
+                        "description": "coe , referal",
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "object"
@@ -858,7 +895,6 @@
                     {
                         "name": "name",
                         "in": "formData",
-                        "required": true,
                         "type": "string",
                         "format": "string"
                     },
@@ -885,6 +921,25 @@
                         "in": "formData",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "type_medication",
+                        "in": "formData",
+                        "description": "uptravi , opsumit",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "etiology",
+                        "in": "formData",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "other_medication",
+                        "in": "formData",
+                        "type": "string",
+                        "format": "string"
                     }
                 ],
                 "responses": {
@@ -973,6 +1028,62 @@
                 ]
             }
         },
+        "/patients/add-referal": {
+            "post": {
+                "tags": [
+                    "patients"
+                ],
+                "summary": "add new refaral patient",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "city_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "country_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "hospital_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "doctor_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "to_hospital",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
         "/account/me": {
             "get": {
                 "tags": [
@@ -1012,7 +1123,7 @@
                         "required": true,
                         "type": "string",
                         "format": "string",
-                        "default": "rep@gmail.com"
+                        "default": "rep1@gmail.com"
                     },
                     {
                         "name": "photo",
@@ -1063,6 +1174,153 @@
                     },
                     "400": {
                         "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/targets": {
+            "get": {
+                "tags": [
+                    "targets"
+                ],
+                "summary": "get all targets paginated",
+                "parameters": [
+                    {
+                        "name": "hospital_id",
+                        "in": "query",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "targets"
+                ],
+                "summary": "add add new target",
+                "parameters": [
+                    {
+                        "name": "number",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "year",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "month",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "hospital_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/targets/{target}": {
+            "put": {
+                "tags": [
+                    "targets"
+                ],
+                "summary": "update target",
+                "parameters": [
+                    {
+                        "name": "target",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "number",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "year",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "month",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "hospital_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "_method:put",
+                        "in": "formData",
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "targets"
+                ],
+                "summary": "Delete target",
+                "parameters": [
+                    {
+                        "name": "target",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
                     }
                 },
                 "security": [
