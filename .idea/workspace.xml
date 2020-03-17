@@ -3,23 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="8b4d09d9-66d6-448a-961e-f30baf5be08d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/HospitalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/HospitalController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Activity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Activity.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Hospital.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Hospital.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ActivityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ActivityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/DoctorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/DoctorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/PatientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/PatientController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ProfileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/PatientRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Api/PatientRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/TargetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/TargetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/ActivityRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Api/ActivityRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/ReferalRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Api/ReferalRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/TargetRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Api/TargetRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/AccountResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/AccountResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/ActivityResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ActivityResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Patient.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Patient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/TargetResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/TargetResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/PatientReferrals.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/PatientReferrals.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/broadcasting.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/broadcasting.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_03_114809_create_hospitals_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_03_114809_create_hospitals_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_08_131413_create_patients_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_08_131413_create_patients_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/UserTargets.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/UserTargets.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_05_135427_create_activities_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_05_135427_create_activities_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_08_131805_create_patient_referrals_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_08_131805_create_patient_referrals_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_08_131917_create_patient_treatments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_08_131917_create_patient_treatments_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_10_123629_create_user_targets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_10_123629_create_user_targets_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
     </list>
@@ -154,7 +157,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Filters" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -166,11 +169,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Filters" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/Http" />
       <recent name="$PROJECT_DIR$/resources/views" />
-      <recent name="$PROJECT_DIR$/database/seeds" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -206,7 +209,12 @@
       <workItem from="1583400608342" duration="12399000" />
       <workItem from="1583662366176" duration="10870000" />
       <workItem from="1583745989119" duration="4464000" />
-      <workItem from="1583829437955" duration="14011000" />
+      <workItem from="1583829437955" duration="14152000" />
+      <workItem from="1583913976234" duration="122000" />
+      <workItem from="1584273249874" duration="4776000" />
+      <workItem from="1584346459957" duration="3273000" />
+      <workItem from="1584374593232" duration="2234000" />
+      <workItem from="1584435668449" duration="3091000" />
     </task>
     <servers />
   </component>

@@ -51,6 +51,13 @@ class ActivityController extends Controller
      *         type="string",
      *         format="string",
      *      ),@SWG\Parameter(
+     *         name="product",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         description="opsumit, uptravi ,tracleer",
+     *      ),@SWG\Parameter(
      *         name="date",
      *         in="formData",
      *         required=true,
@@ -58,9 +65,23 @@ class ActivityController extends Controller
      *         format="string",
      *         description="2020-03-04",
      *      ),@SWG\Parameter(
-     *         name="no_attendees",
+     *         name="speciality[]",
      *         in="formData",
-     *         type="integer",
+     *         type="array",
+     *         collectionFormat="multi",
+     *         uniqueItems=true,
+     *         @SWG\Items(
+     *           type="string",
+     *         ),
+     *      ),@SWG\Parameter(
+     *         name="no_attendees[]",
+     *         in="formData",
+     *         type="array",
+     *         collectionFormat="multi",
+     *         uniqueItems=true,
+     *         @SWG\Items(
+     *           type="string",
+     *         ),
      *      ),@SWG\Parameter(
      *         name="city_id",
      *         in="formData",
@@ -74,6 +95,7 @@ class ActivityController extends Controller
      */
     public function store(ActivityRequest $request)
     {
+//        dd($request->all());
         $auth_user = auth()->user();
         $activity = $auth_user->activities()->create($request->except('speakers'));
         if ($activity)
@@ -141,6 +163,13 @@ class ActivityController extends Controller
      *         type="string",
      *         format="string",
      *      ),@SWG\Parameter(
+     *         name="product",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         description="opsumit, uptravi ,tracleer",
+     *      ),@SWG\Parameter(
      *         name="date",
      *         in="formData",
      *         required=true,
@@ -148,9 +177,23 @@ class ActivityController extends Controller
      *         format="string",
      *         description="2020-03-04",
      *      ),@SWG\Parameter(
-     *         name="no_attendees",
+     *         name="speciality[]",
      *         in="formData",
-     *         type="integer",
+     *         type="array",
+     *         collectionFormat="multi",
+     *         uniqueItems=true,
+     *         @SWG\Items(
+     *           type="string",
+     *         ),
+     *      ),@SWG\Parameter(
+     *         name="no_attendees[]",
+     *         in="formData",
+     *         type="array",
+     *         collectionFormat="multi",
+     *         uniqueItems=true,
+     *         @SWG\Items(
+     *           type="string",
+     *         ),
      *      ),@SWG\Parameter(
      *         name="city_id",
      *         in="formData",

@@ -52,6 +52,14 @@
                         "format": "string"
                     },
                     {
+                        "name": "product",
+                        "in": "formData",
+                        "description": "opsumit, uptravi ,tracleer",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
                         "name": "date",
                         "in": "formData",
                         "description": "2020-03-04",
@@ -60,9 +68,24 @@
                         "format": "string"
                     },
                     {
-                        "name": "no_attendees",
+                        "name": "speciality[]",
                         "in": "formData",
-                        "type": "integer"
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "uniqueItems": true
+                    },
+                    {
+                        "name": "no_attendees[]",
+                        "in": "formData",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "uniqueItems": true
                     },
                     {
                         "name": "city_id",
@@ -135,6 +158,14 @@
                         "format": "string"
                     },
                     {
+                        "name": "product",
+                        "in": "formData",
+                        "description": "opsumit, uptravi ,tracleer",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
                         "name": "date",
                         "in": "formData",
                         "description": "2020-03-04",
@@ -143,9 +174,24 @@
                         "format": "string"
                     },
                     {
-                        "name": "no_attendees",
+                        "name": "speciality[]",
                         "in": "formData",
-                        "type": "integer"
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "uniqueItems": true
+                    },
+                    {
+                        "name": "no_attendees[]",
+                        "in": "formData",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "uniqueItems": true
                     },
                     {
                         "name": "city_id",
@@ -502,6 +548,24 @@
                         "type": "integer"
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
+        "/refreral/targets-details": {
+            "get": {
+                "tags": [
+                    "targets-details"
+                ],
+                "summary": "get my refreral targets-details",
                 "responses": {
                     "200": {
                         "description": "object"
@@ -925,7 +989,7 @@
                     {
                         "name": "type_medication",
                         "in": "formData",
-                        "description": "uptravi , opsumit",
+                        "description": "uptravi , opsumit , tracleer",
                         "type": "string",
                         "format": "string"
                     },
@@ -980,6 +1044,40 @@
                 ]
             }
         },
+        "/patients/{patient}/update-status": {
+            "post": {
+                "tags": [
+                    "patients"
+                ],
+                "summary": "get update patient status",
+                "parameters": [
+                    {
+                        "name": "patient",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "status",
+                        "in": "formData",
+                        "description": "no update , confirmed , not ph",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                },
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ]
+            }
+        },
         "/patients/{patient}/treatments": {
             "post": {
                 "tags": [
@@ -996,7 +1094,7 @@
                     {
                         "name": "type_medication",
                         "in": "formData",
-                        "description": "uptravi , opsumit",
+                        "description": "uptravi , opsumit , tracleer",
                         "required": true,
                         "type": "string",
                         "format": "string"
@@ -1067,6 +1165,12 @@
                     },
                     {
                         "name": "to_hospital",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "to_doctor",
                         "in": "formData",
                         "required": true,
                         "type": "integer"
@@ -1183,15 +1287,33 @@
                 ]
             }
         },
-        "/targets": {
+        "/hospitals/{hospital}/targets": {
             "get": {
                 "tags": [
                     "targets"
                 ],
-                "summary": "get all targets paginated",
+                "summary": "get hospital targets paginated",
                 "parameters": [
                     {
-                        "name": "hospital_id",
+                        "name": "hospital",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "product",
+                        "in": "query",
+                        "description": "opsumit, uptravi ,tracleer",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "month",
                         "in": "query",
                         "type": "integer"
                     }
@@ -1214,6 +1336,20 @@
                 "summary": "add add new target",
                 "parameters": [
                     {
+                        "name": "hospital",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "product",
+                        "in": "formData",
+                        "description": "opsumit, uptravi ,tracleer",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
                         "name": "number",
                         "in": "formData",
                         "required": true,
@@ -1227,12 +1363,6 @@
                     },
                     {
                         "name": "month",
-                        "in": "formData",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "hospital_id",
                         "in": "formData",
                         "required": true,
                         "type": "integer"
@@ -1250,7 +1380,7 @@
                 ]
             }
         },
-        "/targets/{target}": {
+        "/hospitals/{hospital}/targets/{target}": {
             "put": {
                 "tags": [
                     "targets"
@@ -1258,10 +1388,24 @@
                 "summary": "update target",
                 "parameters": [
                     {
+                        "name": "hospital",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
                         "name": "target",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "product",
+                        "in": "formData",
+                        "description": "opsumit, uptravi ,tracleer",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
                     },
                     {
                         "name": "number",
@@ -1277,12 +1421,6 @@
                     },
                     {
                         "name": "month",
-                        "in": "formData",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "hospital_id",
                         "in": "formData",
                         "required": true,
                         "type": "integer"
@@ -1311,6 +1449,12 @@
                 ],
                 "summary": "Delete target",
                 "parameters": [
+                    {
+                        "name": "hospital",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
                     {
                         "name": "target",
                         "in": "path",

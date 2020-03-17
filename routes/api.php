@@ -14,6 +14,7 @@ Route::group(['namespace' => 'Api'] ,function (){
             Route::post('/update','ProfileController@update')->name('api.account.update');
             Route::post('/update-password','ProfileController@updatePassword');
         });
+        Route::get('/refreral/targets-details','HomeController@refreralTargetsDetails');
 
         Route::apiResource('/hospitals','HospitalController');
         Route::apiResource('/doctors','DoctorController');
@@ -21,9 +22,10 @@ Route::group(['namespace' => 'Api'] ,function (){
         Route::apiResource('/activities','ActivityController');
         Route::apiResource('/patients','PatientController');
         Route::post('/patients/add-referal','PatientController@storeReferal');
+        Route::post('/patients/{patient}/update-status','PatientController@updateStatus');
         Route::post('/patients/{patient}/treatments','PatientController@addTreatments');
 
-        Route::apiResource('/targets','TargetController');
+        Route::apiResource('hospitals/{hospital}/targets','TargetController');
 
     });
     Route::get('/countries','LocationController@index');

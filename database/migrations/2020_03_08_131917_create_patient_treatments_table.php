@@ -15,7 +15,7 @@ class CreatePatientTreatmentsTable extends Migration
     {
         Schema::create('patient_treatments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('type_medication')->default('uptravi'); // uptravi , opsumit
+            $table->string('type_medication')->default('uptravi'); // uptravi , opsumit , tracleer
             $table->string('etiology');
             $table->text('other_medication')->nullable();
             $table->unsignedBigInteger('patient_id')->index();

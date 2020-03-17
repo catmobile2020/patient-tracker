@@ -28,4 +28,9 @@ class Hospital extends Model
     {
         return $this->belongsTo(User::class)->withDefault();
     }
+
+    public function targets()
+    {
+        return $this->hasMany(UserTargets::class);
+    }
 }

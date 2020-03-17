@@ -24,9 +24,9 @@ class TargetRequest extends FormRequest
     public function rules()
     {
         return [
-            'hospital_id'=>'required|exists:hospitals,id',
+            'product'=>'required|in:opsumit,uptravi,tracleer',
             'number'=>'required|integer|min:0',
-            'year'=>'required|integer',
+            'year'=>'required|integer|digits:4',
             'month'=>'required|integer|min:1|max:12',
         ];
     }

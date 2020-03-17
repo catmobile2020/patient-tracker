@@ -102,11 +102,12 @@ class DoctorController extends Controller
      *      @SWG\Response(response=200, description="object"),
      * )
      * @param Doctor $doctor
-     * @return PatientsResource
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function showPatients(Doctor $doctor)
     {
-        return PatientsResource::collection($doctor->patients()->with('hospital')->paginate($this->api_paginate_num));
+        $patients = $doctor->patients()->with('hospital')->paginate($this->api_paginate_num);
+        return PatientsResource::collection($patients);
     }
 
 

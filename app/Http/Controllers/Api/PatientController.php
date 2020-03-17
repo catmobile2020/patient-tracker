@@ -103,7 +103,7 @@ class PatientController extends Controller
      *         in="formData",
      *         type="string",
      *         format="string",
-     *         description="uptravi , opsumit",
+     *         description="uptravi , opsumit , tracleer",
      *      ),@SWG\Parameter(
      *         name="etiology",
      *         in="formData",
@@ -126,7 +126,7 @@ class PatientController extends Controller
         $inputs = $request->all();
         $auth_user = auth()->user();
         $hospital = Hospital::find($request->hospital_id);
-        if ($hospital->type != 'coe')
+        if (strtolower($hospital->type) != 'coe')
         {
             return $this->responseJson("This Hospital Doesn't Support COE Type.",400);
         }
@@ -167,6 +167,45 @@ class PatientController extends Controller
 
     /**
      *
+     * @SWG\Post(
+     *      tags={"patients"},
+     *      path="/patients/{patient}/update-status",
+     *      summary="get update patient status",
+     *      security={
+     *          {"jwt": {}}
+     *      },@SWG\Parameter(
+     *         name="patient",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="status",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         description="no update , confirmed , not ph",
+     *      ),
+     *      @SWG\Response(response=200, description="object"),
+     * )
+     * @param Patient $patient
+     * @param Request $request
+     * @return PatientResource
+     */
+    public function updateStatus(Patient $patient,Request $request)
+    {
+        if (!$request->status)
+        {
+            return $this->responseJson('status filed is required',400);
+        }
+        $auth_user = auth()->user();
+        $patient->update(['status'=>$request->status]);
+        $patient->histories()->create(['user_id'=>$auth_user->id,'status'=>$patient->status]);
+        return $this->responseJson('Updated Successfully',200);
+    }
+
+    /**
+     *
      * @SWG\post(
      *      tags={"patients"},
      *      path="/patients/{patient}/treatments",
@@ -184,7 +223,7 @@ class PatientController extends Controller
      *         required=true,
      *         type="string",
      *         format="string",
-     *         description="uptravi , opsumit",
+     *         description="uptravi , opsumit , tracleer",
      *      ),@SWG\Parameter(
      *         name="etiology",
      *         in="formData",
@@ -252,6 +291,11 @@ class PatientController extends Controller
      *         in="formData",
      *         required=true,
      *         type="integer",
+     *      ),@SWG\Parameter(
+     *         name="to_doctor",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
      *      ),
      *      @SWG\Response(response=200, description="object"),
      * )
@@ -260,14 +304,23 @@ class PatientController extends Controller
      */
     public function storeReferal(ReferalRequest $request)
     {
-        $inputs = $request->all();
         $auth_user = auth()->user();
-        $inputs['status'] = 'no update';
-        $patient =$auth_user->patients()->create($inputs);
+        $patient =$auth_user->patients()->create([
+            'name'=>$request->name,
+            'status'=>'no update',
+            'city_id'=>$request->city_id,
+            'country_id'=>$request->country_id,
+            'hospital_id'=>$request->to_hospital,
+            'doctor_id'=>$request->to_doctor,
+        ]);
 
         if ($patient)
         {
-            $patient->referrals()->create(['from_hospital'=>$request->hospital_id,'to_hospital'=>$request->to_hospital]);
+            $patient->referrals()->create([
+                'from_hospital'=>$request->hospital_id,'to_hospital'=>$request->to_hospital,
+                'from_doctor'=>$request->doctor_id,'to_doctor'=>$request->to_doctor,
+                'user_id'=>$auth_user->id
+            ]);
             $patient->histories()->create(['user_id'=>$auth_user->id,'status'=>$patient->status]);
             return $this->responseJson('Send Successfully',200);
         }

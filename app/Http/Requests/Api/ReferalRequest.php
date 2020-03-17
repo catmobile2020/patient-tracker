@@ -13,7 +13,7 @@ class ReferalRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +29,7 @@ class ReferalRequest extends FormRequest
             'hospital_id'=>'required|exists:hospitals,id',
             'doctor_id'=>'required|exists:doctors,id',
             'to_hospital'=>'required|exists:hospitals,id',
+            'to_doctor'=>'required|exists:doctors,id',
         ];
     }
 }

@@ -15,6 +15,7 @@ class CreateUserTargetsTable extends Migration
     {
         Schema::create('user_targets', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('product')->nullable(); // opsumit, uptravi ,tracleer
             $table->integer('number')->default(0);
             $table->year('year');
             $table->integer('month');

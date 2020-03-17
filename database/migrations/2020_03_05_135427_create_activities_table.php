@@ -17,8 +17,10 @@ class CreateActivitiesTable extends Migration
             $table->bigIncrements('id');
             $table->tinyInteger('type');// 1=> MedicalEducation , 2=> MarketAccess , 3=> Commercial
             $table->string('subtype');
+            $table->string('product'); // opsumit, uptravi ,tracleer
             $table->date('date');
-            $table->string('no_attendees')->nullable();
+            $table->text('speciality')->nullable();
+            $table->text('no_attendees')->nullable();
             $table->unsignedBigInteger('city_id')->index();
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->unsignedBigInteger('user_id')->index();

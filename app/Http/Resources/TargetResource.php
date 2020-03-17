@@ -16,10 +16,11 @@ class TargetResource extends JsonResource
     {
         return [
             'id'=>$this->id,
+            'product'=>$this->product,
             'number'=>$this->number,
             'year'=>$this->year,
             'month'=>$this->month,
-            'hospital_id'=>HospitalsResource::make($this->hospital),
+            'hospital'=>HospitalsResource::make($this->hospital),
         ];
     }
 }

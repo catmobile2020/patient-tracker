@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PatientReferrals extends Model
 {
-    protected $fillable=['from_hospital','to_hospital','user_id','patient_id'];
+    protected $fillable=['from_hospital','to_hospital','from_doctor','to_doctor','user_id','patient_id'];
 
 
     public function fromHospital()

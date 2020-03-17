@@ -89,4 +89,9 @@ class User extends Authenticatable implements JWTSubject
     public function routeNotificationForFcm() {
         return $this->device_token;
     }
+
+    public function getTargetAttribute()
+    {
+        return $this->patients()->has('referrals')->count();
+    }
 }
